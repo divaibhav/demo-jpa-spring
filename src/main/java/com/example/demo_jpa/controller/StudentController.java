@@ -41,5 +41,18 @@ public class StudentController {
         return "Deleted Successfully";
     }
 
+    // find the student by name
+    //http://localhost:8080/students/search?name=value
+    @GetMapping("/search")
+    public List<Student> getAllByName(@RequestParam String name) {
+        return service.getAllByName(name);
+    }
+
+    @GetMapping("/email/{email}")
+    public Student getByEmail(@PathVariable String email) {
+        return service.getByEmail(email)
+                .orElse(null);
+    }
+
 
 }

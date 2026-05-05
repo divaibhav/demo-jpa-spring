@@ -35,5 +35,21 @@ public class StudentService {
         // what if this student id is referred in some other table?
     }
 
+    //List<Student> findByName(String name);
+    public List<Student> getAllByName(String name) {
+        return repository.findByName(name);
+    }
+    // find the student by name
+    //http://localhost:8080/students/search?name=value
+//    @GetMapping("/search")
+//    public List<Student> getAllByName(@RequestParam String name){
+//        return service.getAllByName(name);
+//    }
+
+    // find by email
+    public Optional<Student> getByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
 
 }
