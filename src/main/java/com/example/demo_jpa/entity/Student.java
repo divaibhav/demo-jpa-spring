@@ -2,6 +2,9 @@ package com.example.demo_jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "students")
 public class Student {
@@ -15,12 +18,20 @@ public class Student {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Course> courses = new ArrayList<>();
+
     public Student() {
     }
 
     public Student(String name, String email) {
         this.name = name;
         this.email = email;
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.setStudent(this);
     }
 
     public Long getId() {
@@ -45,5 +56,13 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }
