@@ -41,5 +41,7 @@ public class StudentController2 {
         return service1.deleteStudent(id);
     }
 
+    // think how to remove a course
+
 
 }
